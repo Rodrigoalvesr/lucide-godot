@@ -1,3 +1,7 @@
+## A [TextureRect] that renders any icon from the Lucide open-source library.
+## Set [member icon_name] to the icon's kebab-case identifier (e.g. [code]"house"[/code],
+## [code]"circle-check"[/code]) and adjust [member icon_size], [member color], and
+## [member stroke_width] to fit your UI. Icons are rasterized on demand and cached for performance.
 @tool
 class_name Lucide
 extends TextureRect
