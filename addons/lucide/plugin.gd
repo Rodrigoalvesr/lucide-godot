@@ -258,6 +258,9 @@ func _on_download_complete(result: int, code: int, _headers, body: PackedByteArr
 
 	var zip_path := "res://addons/lucide/icons.zip"
 	var f := FileAccess.open(zip_path, FileAccess.WRITE)
+	if not f:
+		push_error("[Lucide] Failed to write ZIP file: %s" % zip_path)
+		return
 	f.store_buffer(body)
 	f.close()
 
@@ -274,7 +277,9 @@ func _on_download_complete(result: int, code: int, _headers, body: PackedByteArr
 
 func _extract_zip(zip_path: String, dest: String) -> void:
 	var zip := ZIPReader.new()
-	zip.open(zip_path)
+	if zip.open(zip_path) != OK:
+		push_error("[Lucide] Failed to open ZIP: %s" % zip_path)
+		return
 
 	for file in zip.get_files():
 		if file.ends_with(".svg"):
