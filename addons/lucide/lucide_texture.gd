@@ -15,6 +15,8 @@ const _SVG_BASE_SIZE := 24.0
 
 static var _cache_icons: Dictionary[String, String] = {}
 
+var _ready := false
+
 @export var icon_name: String = "":
 	set(v):
 		icon_name = v
@@ -41,9 +43,11 @@ func _init(p_icon: String = "", p_size: float = DEFAULT_SIZE, p_color: Color = D
 	icon_size = p_size
 	color = p_color
 	stroke_width = p_stroke
+	_ready = true
+	_reload()
 
 func _reload() -> void:
-	if icon_name.is_empty():
+	if not _ready or icon_name.is_empty():
 		return
 	var svg: String
 	if _cache_icons.has(icon_name):
