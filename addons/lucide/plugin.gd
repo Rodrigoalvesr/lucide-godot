@@ -337,7 +337,7 @@ func _update_icons_in_place() -> void:
 	if not list:
 		return
 	for row in list.get_children():
-		var icon = row.get_node_or_null("Icon")
+		var icon = row.get_node_or_null("LucideIcon")
 		if icon:
 			icon.icon_size = _icon_size
 			icon.color = _icon_color
