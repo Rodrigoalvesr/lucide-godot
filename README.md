@@ -10,6 +10,7 @@ Icons are downloaded from the official Lucide GitHub releases and rasterized on-
 
 - **1 500+ icons** sourced from the official Lucide releases
 - **Custom `Lucide` node** — drop it in any scene like any other `TextureRect`
+- **`LucideTexture` resource** — use any Lucide icon as a texture on Buttons, Sprites, and any other node that accepts a `Texture2D`
 - **Fully configurable** — size, color, and stroke width per node, both in the Inspector and in code
 - **Auto-download** — icons are fetched from GitHub on first use; no manual setup required
 - **One-click update** — check and install the latest Lucide release from the editor dock
@@ -84,6 +85,27 @@ $MyIcon.color       = Color.YELLOW
 $MyIcon.stroke_width = 1.0
 ```
 
+### As a Texture Resource (`LucideTexture`)
+
+You can use any Lucide icon as a plain `Texture2D` on any node that has a texture slot — such as a `Button`'s **Icon**, a `Sprite2D`, or a `TextureButton`.
+
+1. Click the texture slot in the Inspector (e.g. **Icon** on a `Button`).
+2. Choose **New LucideTexture** from the dropdown.
+3. Set **Icon Name**, **Icon Size**, **Color**, and **Stroke Width** in the Inspector.
+
+   ![Button Inspector with a LucideTexture assigned to the Icon property](assets/button_icon.png)
+
+In code:
+
+```gdscript
+var tex := LucideTexture.new()
+tex.icon_name = "log-out"
+tex.icon_size = 24
+tex.color = Color.WHITE
+tex.stroke_width = 2.0
+$Button.icon = tex
+```
+
 ### Icon Names
 
 Icon names match the Lucide identifier exactly, in kebab-case (e.g. `arrow-up-right`, `file-text`, `loader-circle`). The full list is available at [lucide.dev/icons](https://lucide.dev/icons).
@@ -145,6 +167,17 @@ addons/lucide/
 ├── icons/              # Downloaded SVG icons (git-ignored)
 └── .lucide-version     # Installed version tracker (git-ignored)
 ```
+
+---
+
+## Changelog
+
+### v1.1.0
+- Added `LucideTexture` resource — use Lucide icons as a `Texture2D` on any node (buttons, sprites, etc.)
+- Fixed release asset lookup using the correct `name` field from the GitHub API
+
+### v1.0.0
+- Initial release
 
 ---
 
