@@ -215,7 +215,7 @@ func _on_version_fetched(result: int, code: int, _headers, body: PackedByteArray
 
 	var zip_url := ""
 	for asset in json.get("assets", []):
-		var asset_name := asset["asset_name"] as String
+		var asset_name := asset["name"] as String
 		if asset_name.begins_with("lucide-icons-") and asset_name.ends_with(".zip"):
 			zip_url = asset["browser_download_url"]
 			break
