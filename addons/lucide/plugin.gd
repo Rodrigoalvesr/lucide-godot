@@ -8,14 +8,15 @@ const VERSION_TEXT := "Lucide: %s"
 
 var _http: HTTPRequest
 var _panel: Control
-var _icon_size: float = Lucide.DEFAULT_SIZE
-var _stroke_width: float = Lucide.DEFAULT_STROKE
-var _icon_color: Color = Lucide.DEFAULT_COLOR
+var _icon_size: float = LucideTexture.DEFAULT_SIZE
+var _stroke_width: float = LucideTexture.DEFAULT_STROKE
+var _icon_color: Color = LucideTexture.DEFAULT_COLOR
 var _update_token: int = 0
 
 
 func _enter_tree() -> void:
 	var icon := load("res://addons/lucide/icon.svg")
+	add_custom_type("LucideTexture", "ImageTexture", preload("lucide_texture.gd"), icon)
 	add_custom_type("Lucide", "TextureRect", preload("lucide.gd"), icon)
 
 	_build_panel()
